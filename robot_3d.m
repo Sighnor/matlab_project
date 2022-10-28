@@ -1,0 +1,34 @@
+theta = textread('data.txt');
+my_length = length(theta);
+t = 1:my_length;
+angle1 = theta(:,1);
+angle2 = theta(:,2);
+angle3 = theta(:,3);
+angle4 = theta(:,4);
+angle5 = theta(:,5);
+angle6 = theta(:,6);
+x = zeros(my_length,1);
+y = zeros(my_length,1);
+z = zeros(my_length,1);
+for i=1:my_length
+            output = robot_delta(theta(i,1),theta(i,2),theta(i,3));
+            x(i) = output(1);
+            y(i) = output(2);
+            z(i) = output(3);
+end
+v=[x,y,z];
+shp = alphaShape(v);
+figure(1);
+plot(shp);
+figure(2);
+plot(t, angle1);
+figure(3);
+plot(t, [0;diff(angle1)]);
+figure(4);
+plot(t, angle2);
+figure(5);
+plot(t, [0;diff(angle2)]);
+figure(6);
+plot(t, angle3);
+figure(7);
+plot(t, [0;diff(angle3)]);
